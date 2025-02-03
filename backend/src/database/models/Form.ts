@@ -27,6 +27,9 @@ export class Form {
   
     @CreateDateColumn()
     createdAt: Date;
+
+    @Column({default: "none"  })
+    accessToken: string;
   
     @UpdateDateColumn()
     updatedAt: Date;

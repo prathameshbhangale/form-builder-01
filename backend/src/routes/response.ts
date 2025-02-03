@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { submitResponse } from '../controllers/submitResponse';
+import { initilizeResponse, submitResponse } from '../controllers/submitResponse';
 
 const router = Router();
 
-router.post('/', submitResponse);
+router.post('/submit', submitResponse);
+router.post('/init',initilizeResponse)
 
 
 

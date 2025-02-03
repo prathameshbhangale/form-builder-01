@@ -6,7 +6,7 @@ import Forms from './pages/forms'
 import Navbar from './components/common/Navbar'
 import CreateFormPage from './pages/createform'
 import FormFieldContainer from './pages/fromfields'
-// import FormField from './pages/formField'
+import FormResponse from './pages/formResponse'
 
 function App() {
 
@@ -22,6 +22,7 @@ function App() {
           </Route>
           <Route path="/form/create/:formid" element={<FormFieldContainer/>}/>
           <Route path="/login" element={ <LoginPage/> } />
+          <Route path="/resp/:FormResponseToken" element={ <FormResponse/> } />
           <Route path="/signup" element={ <SignUpPage/> } />
         </Routes>
     </div>

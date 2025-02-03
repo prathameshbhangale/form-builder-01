@@ -16,17 +16,6 @@ interface ApiField {
     options?:string[],
     formId:number
 }
-
-// {
-//     "label": "Country",
-//     "type": "select",
-//     "isRequired": false,
-//     "order": 4,
-//     "formId": 19,
-//     "placeholder": "Select your country",
-//     "options": ["USA", "Canada", "UK", "India"]
-// }
-
 export const AddFieldApi = async (fields: FormField[],token: string|null, formid:number): Promise<ApiResponse> => {
     try {
         let body:ApiField[] = []; 

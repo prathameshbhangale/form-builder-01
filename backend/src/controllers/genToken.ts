@@ -25,6 +25,15 @@ export const generateTokenWithFormId = async (req: CustomRequest, res: Response)
             relations: ["user"], 
         });
 
+        if (form?.accessToken !== "none"){
+            res.status(200).json({
+                success: true,
+                message: "Token generated successfully.",
+                token: form?.accessToken,
+            });
+            return 
+        }
+
         if (!form) {
             res.status(404).json({
                 success: false,
@@ -55,7 +64,8 @@ export const generateTokenWithFormId = async (req: CustomRequest, res: Response)
         }
 
         const token = jwt.sign(tokenPayload, secretKey);
-
+        form.accessToken = token
+        await formRepository.save(form);
         // Return the token
         res.status(200).json({
             success: true,
@@ -70,3 +80,4 @@ export const generateTokenWithFormId = async (req: CustomRequest, res: Response)
         });
     }
 };
+

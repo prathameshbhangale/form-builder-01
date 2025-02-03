@@ -2,7 +2,7 @@ import { Response } from "express";
 import { AppDataSource } from "../database/dataSource"; 
 import { Field } from "../database/models/Field"; 
 import { Form } from "../database/models/Form";  
-import { CustomRequest } from "../types/CustomRequest";  
+import { CustomRequest } from "../types/CustomRequest"; 
 
 export const insertField = async (req: CustomRequest, res: Response) : Promise<void> => {
     try {
@@ -129,7 +129,6 @@ export const insertManyFields = async (req: CustomRequest, res: Response): Promi
     }
 };
 
-
 export const deleteField = async (req: CustomRequest, res: Response) : Promise<void> => {
     try {
         const { fieldId } = req.params;
@@ -227,7 +226,6 @@ export const updateField = async (req: CustomRequest, res: Response) : Promise<v
         });
     }
 };
-
 
 export const getAllFields = async (req: CustomRequest, res: Response) : Promise<void> => {
     try {
