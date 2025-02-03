@@ -6,9 +6,13 @@ import {
   ListChecks, 
   ToggleLeft, 
   Calendar, 
-  Mail,
-  Phone
-} from 'lucide-react';
+  Mail, 
+  Phone, 
+  Heading, 
+  FileText, 
+  Hash, 
+  CircleDot 
+} from "lucide-react";
 import { addField } from '../../slices/field';
 
 interface FieldTypeProps {
@@ -47,12 +51,17 @@ const FieldTypeItem = ({ type, icon, label }: FieldTypeProps) => {
 
 export const FieldTypes = () => {
   const fieldTypes = [
-    { type: 'text', icon: <Type size={20} />, label: 'Text Input' },
-    { type: 'select', icon: <ListChecks size={20} />, label: 'Dropdown' },
-    { type: 'checkbox', icon: <ToggleLeft size={20} />, label: 'Checkbox' },
-    { type: 'date', icon: <Calendar size={20} />, label: 'Date Picker' },
-    { type: 'email', icon: <Mail size={20} />, label: 'Email Input' },
-    { type: 'phone', icon: <Phone size={20} />, label: 'Phone Input' },
+    { type: "text", icon: <Type size={20} />, label: "Text Input" },
+    { type: "select", icon: <ListChecks size={20} />, label: "Dropdown" },
+    { type: "checkbox", icon: <ToggleLeft size={20} />, label: "Checkbox" },
+    { type: "date", icon: <Calendar size={20} />, label: "Date Picker" },
+    { type: "email", icon: <Mail size={20} />, label: "Email Input" },
+    { type: "phone", icon: <Phone size={20} />, label: "Phone Input" },
+    { type: "title", icon: <Heading size={20} />, label: "Title" },
+    { type: "description", icon: <FileText size={20} />, label: "Description" },
+    { type: "large-text", icon: <FileText size={20} />, label: "Large Text" },
+    { type: "number", icon: <Hash size={20} />, label: "Number Input" },
+    { type: "radio", icon: <CircleDot size={20} />, label: "Radio Input" },
   ];
 
   return (

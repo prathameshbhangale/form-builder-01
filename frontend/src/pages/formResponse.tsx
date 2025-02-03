@@ -26,7 +26,7 @@ const StyledForm: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -59,7 +59,7 @@ const StyledForm: React.FC = () => {
             <label className="block text-gray-700 font-medium mb-2">
               {field.label} {field.required && <span className="text-red-500">*</span>}
             </label>
-            
+
             {(() => {
               switch (field.type) {
                 case "select":
@@ -104,10 +104,68 @@ const StyledForm: React.FC = () => {
                       required={field.required}
                     />
                   );
+                case "title":
+                  return <h3 className="text-lg font-semibold text-gray-700">{field.label}</h3>;
+                case "description":
+                  return <p className="text-gray-600">{field.placeholder || "Description text here..."}</p>;
+                case "large-text":
+                  return (
+                    <textarea
+                      name={`${field.id}`}
+                      placeholder={field.placeholder || "Enter text here..."}
+                      className="w-full p-3 border rounded-md bg-gray-200 focus:ring-2 focus:ring-pink-400"
+                      rows={3}
+                      onChange={handleChange}
+                      required={field.required}
+                    />
+                  );
+                case "number":
+                  return (
+                    <input
+                      type="number"
+                      name={`${field.id}`}
+                      placeholder={field.placeholder || "Enter number"}
+                      className="w-full p-3 border rounded-md bg-gray-200 focus:ring-2 focus:ring-pink-400"
+                      onChange={handleChange}
+                      required={field.required}
+                    />
+                  );
+                case "date":
+                  return (
+                    <input
+                      type="date"
+                      name={`${field.id}`}
+                      className="w-full p-3 border rounded-md bg-gray-200 focus:ring-2 focus:ring-pink-400"
+                      onChange={handleChange}
+                      required={field.required}
+                    />
+                  );
+                case "email":
+                  return (
+                    <input
+                      type="email"
+                      name={`${field.id}`}
+                      placeholder={field.placeholder || "email@example.com"}
+                      className="w-full p-3 border rounded-md bg-gray-200 focus:ring-2 focus:ring-pink-400"
+                      onChange={handleChange}
+                      required={field.required}
+                    />
+                  );
+                case "phone":
+                  return (
+                    <input
+                      type="tel"
+                      name={`${field.id}`}
+                      placeholder={field.placeholder || "+1 (555) 000-0000"}
+                      className="w-full p-3 border rounded-md bg-gray-200 focus:ring-2 focus:ring-pink-400"
+                      onChange={handleChange}
+                      required={field.required}
+                    />
+                  );
                 default:
                   return (
                     <input
-                      type={field.type}
+                      type="text"
                       name={`${field.id}`}
                       placeholder={field.placeholder || "Enter value"}
                       className="w-full p-3 border rounded-md bg-gray-200 focus:ring-2 focus:ring-pink-400"

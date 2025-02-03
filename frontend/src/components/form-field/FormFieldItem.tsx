@@ -105,6 +105,39 @@ export const FormFieldItem = ({ field, index, moveField }: FormFieldItemProps) =
             disabled
           />
         );
+      case 'title':
+        return <h3 className="text-lg font-semibold text-gray-700">{field.label}</h3>;
+      case 'description':
+        return <p className="text-gray-600">{field.placeholder || 'Description text here...'}</p>;
+      case 'large-text':
+        return (
+          <textarea
+            className="form-textarea mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            placeholder={field.placeholder || 'Enter text here...'}
+            rows={3}
+            disabled
+          />
+        );
+      case 'number':
+        return (
+          <input
+            type="number"
+            className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            placeholder={field.placeholder || 'Enter number'}
+            disabled
+          />
+        );
+      case 'radio':
+        return (
+          <div className="mt-1 flex flex-col">
+            {field.options?.map((option, index) => (
+              <label key={index} className="flex items-center gap-2">
+                <input type="radio" name={`radio-${field.id}`} disabled className="form-radio text-indigo-600" />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+        );
       default:
         return null;
     }
