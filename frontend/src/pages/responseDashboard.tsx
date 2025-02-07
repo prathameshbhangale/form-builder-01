@@ -46,31 +46,29 @@ const FormResponsePage = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <h2 className="text-2xl font-semibold mb-4 text-gray-800">User Forms</h2>
+    <div className="max-w-full mx-auto p-6 bg-gray-900 text-white min-h-screen">
+      <h2 className="text-2xl text-center font-semibold mb-4 text-gold-500">User Forms</h2>
 
       {/* Main Layout Container */}
       <div className="flex gap-6">
         {/* Left Side - Forms List */}
-        <div className="w-1/3 bg-white shadow-md rounded-lg border border-gray-200 p-4">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">Forms</h3>
+        <div className="w-1/3 bg-gray-800 shadow-md rounded-lg border border-gold-500 p-4">
+          <h3 className="text-xl font-semibold text-gold-500 mb-4">Forms</h3>
           {loading ? (
-            <p className="text-gray-600 text-center">Loading forms...</p>
+            <p className="text-gray-400 text-center">Loading forms...</p>
           ) : forms.length === 0 ? (
-            <p className="text-gray-500 text-center">No forms found.</p>
+            <p className="text-gray-400 text-center">No forms found.</p>
           ) : (
             <ul className="space-y-4">
               {forms.map((form) => (
                 <li
                   key={form.formId}
-                  className={`flex justify-between items-center p-3 rounded-md cursor-pointer ${
-                    selectedForm === form.formId
-                      ? "bg-blue-100 border border-blue-600"
-                      : "bg-gray-100 border border-gray-300"
+                  className={`flex justify-between items-center p-3 rounded-md cursor-pointer transition-colors duration-300 hover:bg-gray-700 border border-gray-600 ${
+                    selectedForm === form.formId ? "bg-gold-500 text-black" : "bg-gray-700 text-white"
                   }`}
                   onClick={() => handleViewResponses(form.formId)}
                 >
-                  <span className="text-lg font-medium text-gray-700">{form.title}</span>
+                  <span className="text-lg font-medium">{form.title}</span>
                 </li>
               ))}
             </ul>
@@ -78,21 +76,21 @@ const FormResponsePage = () => {
         </div>
 
         {/* Right Side - Responses Table */}
-        <div className="w-2/3 bg-white shadow-md rounded-lg border border-gray-200 p-4">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">
+        <div className="w-2/3 bg-gray-800 shadow-md rounded-lg border border-gold-500 p-4">
+          <h3 className="text-xl font-semibold text-gold-500 mb-4">
             {selectedForm ? `Responses for Form ID: ${selectedForm}` : "Select a form to view responses"}
           </h3>
 
           {selectedForm && responses && responses.count && responses.count > 0 ? (
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-gray-300">
+              <table className="w-full border-collapse border border-gray-600 text-white">
                 <thead>
-                  <tr className="bg-gray-100">
+                  <tr className="bg-gray-700 text-gold-500">
                     {responses.fields &&
                       responses.fields.map((field, index) => (
                         <th
                           key={index}
-                          className="border border-gray-300 px-4 py-2 text-left text-gray-700"
+                          className="border border-gray-600 px-4 py-2 text-left"
                         >
                           {field}
                         </th>
@@ -102,11 +100,11 @@ const FormResponsePage = () => {
                 <tbody>
                   {responses.values &&
                     responses.values.map((row, rowIndex) => (
-                      <tr key={rowIndex} className="hover:bg-gray-50">
+                      <tr key={rowIndex} className="hover:bg-gray-700">
                         {row.map((value, colIndex) => (
                           <td
                             key={colIndex}
-                            className="border border-gray-300 px-4 py-2 text-gray-600"
+                            className="border border-gray-600 px-4 py-2 text-gray-300"
                           >
                             {value}
                           </td>
@@ -117,7 +115,9 @@ const FormResponsePage = () => {
               </table>
             </div>
           ) : (
-            <p className="text-gray-500">{selectedForm ? "No responses available." : "Select a form to see responses."}</p>
+            <p className="text-gray-400">
+              {selectedForm ? "No responses available." : "Select a form to see responses."}
+            </p>
           )}
         </div>
       </div>
