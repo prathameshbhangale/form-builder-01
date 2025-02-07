@@ -8,3 +8,5 @@ export const form_add_fields = `${BASE_URL}/field/insertmany`
 export const form_response_url = `${BASE_URL}/form/accessurl`
 export const form_response_init = `${BASE_URL}/resp/init`
 export const form_response_submit = `${BASE_URL}/resp/submit`
+export const form_responses = `${BASE_URL}/resp/form/responses`
+export const form_delete = `${BASE_URL}/form/`

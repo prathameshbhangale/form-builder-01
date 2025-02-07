@@ -51,7 +51,7 @@ export const FieldEditor = () => {
             />
           </div>
 
-          {field.type !== 'checkbox' && (
+          {(field.type !== 'checkbox' && field.type !== 'title' && field.type !== 'description') && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Placeholder
@@ -65,7 +65,7 @@ export const FieldEditor = () => {
             </div>
           )}
 
-          {field.type === 'select' && (
+          {(field.type === 'select' || field.type === "radio") && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Options (one per line)

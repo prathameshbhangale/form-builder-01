@@ -3,8 +3,11 @@ import { FormField } from "../types";
 import { InitResponse } from "../apis/forms/initResponse";
 import { useParams } from "react-router-dom";
 import { SubmitResponse } from "../apis/forms/submitResponse";
+import { useNavigate } from "react-router-dom";
+
 
 const StyledForm: React.FC = () => {
+  const navigate = useNavigate();
   let [formFields, setFormFields] = useState<FormField[]>([]);
   const [formData, setFormData] = useState<{ [key: string]: string | boolean | number | Date }>({});
   const { FormResponseToken } = useParams<{ FormResponseToken: string }>();
@@ -46,6 +49,7 @@ const StyledForm: React.FC = () => {
       } else {
         console.log("Error submitting form");
       }
+      navigate("/success");
     } catch (error) {
       console.log(error);
     }
@@ -56,9 +60,9 @@ const StyledForm: React.FC = () => {
       <form onSubmit={handleSubmit} className="w-full max-w-2xl bg-white p-6 shadow-lg rounded-lg">
         {formFields.map((field) => (
           <div key={field.id} className="mb-4 p-4 bg-gray-100 rounded-lg">
-            <label className="block text-gray-700 font-medium mb-2">
+            { (field.type !=="title" && field.type!=="description") && (<label className="block text-gray-700 font-medium mb-2">
               {field.label} {field.required && <span className="text-red-500">*</span>}
-            </label>
+            </label>)}
 
             {(() => {
               switch (field.type) {
@@ -107,7 +111,7 @@ const StyledForm: React.FC = () => {
                 case "title":
                   return <h3 className="text-lg font-semibold text-gray-700">{field.label}</h3>;
                 case "description":
-                  return <p className="text-gray-600">{field.placeholder || "Description text here..."}</p>;
+                  return <p className="text-gray-600">{field.label || "Description text here..."}</p>;
                 case "large-text":
                   return (
                     <textarea

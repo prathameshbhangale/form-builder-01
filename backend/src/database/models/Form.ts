@@ -22,7 +22,7 @@ export class Form {
     @Column({ nullable: true })
     description: string;
   
-    @ManyToOne(() => User, (user) => user.forms)
+    @ManyToOne(() => User, (user) => user.forms, {onDelete: "CASCADE"})
     user: User;
   
     @CreateDateColumn()

@@ -13,7 +13,7 @@ import {
     @PrimaryGeneratedColumn({ type: "int"})
     fieldId: number;
   
-    @ManyToOne(() => Form, (form) => form.fields)
+    @ManyToOne(() => Form, (form) => form.fields, {onDelete: "CASCADE"})
     form: Form;
   
     @Column()

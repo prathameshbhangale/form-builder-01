@@ -14,7 +14,7 @@ export class Response {
     @PrimaryGeneratedColumn({ type: "int" })
     responseId: number;
   
-    @ManyToOne(() => Form, (form) => form.responses)
+    @ManyToOne(() => Form, (form) => form.responses, {onDelete: "CASCADE"})
     form: Form;
   
     @CreateDateColumn()

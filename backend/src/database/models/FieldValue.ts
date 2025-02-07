@@ -13,10 +13,10 @@ export class FieldValue {
     @PrimaryGeneratedColumn({ type: "int"})
     fieldValueId: number;
 
-    @ManyToOne(() => Response, (response) => response.fieldValues)
+    @ManyToOne(() => Response, (response) => response.fieldValues, {onDelete: "CASCADE"})
     response: Response;
 
-    @ManyToOne(() => Field, (field) => field)
+    @ManyToOne(() => Field, (field) => field, {onDelete: "CASCADE"})
     field: Field;
 
     @Column()

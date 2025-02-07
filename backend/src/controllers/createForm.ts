@@ -90,11 +90,16 @@ export const getFormById = async (req: CustomRequest, res: Response): Promise<vo
 };
 
 
-export const deleteForm = async (req: Request, res: Response): Promise<void> => {
+export const deleteForm = async (req: CustomRequest, res: Response): Promise<void> => {
     try {
         const { formId } = req.params;
+        const payload = req.tokenPayload;
 
-        // Ensure formId is provided and is a valid number
+        if (!payload) {
+            res.status(401).json({ success: false, message: "Unauthorized request. Login required." });
+            return;
+        }
+
         const parsedFormId = Number(formId);
         if (isNaN(parsedFormId)) {
             res.status(400).json({ success: false, message: "Invalid form ID." });
@@ -102,15 +107,26 @@ export const deleteForm = async (req: Request, res: Response): Promise<void> => 
         }
 
         const formRepository = AppDataSource.getRepository(Form);
-        const form = await formRepository.findOneBy({ formId: parsedFormId });
+        const form = await formRepository.findOne({
+            where: { formId: parsedFormId },
+            relations: ["user", "fields", "responses", "responses.fieldValues"], // Load related entities
+        });
+
         if (!form) {
             res.status(404).json({ success: false, message: "Form not found." });
             return;
         }
 
+        // Check if the logged-in user is the owner of the form
+        if (form && form.user && form.user.userId !== Number(payload.sub)) {
+            res.status(403).json({ success: false, message: "You are not authorized to delete this form." });
+            return;
+        }
+
+        // Remove the form (Cascade deletes associated fields, fieldValues, and responses)
         await formRepository.remove(form);
         
-        res.status(200).json({ success: true, message: "Form deleted successfully." });
+        res.status(200).json({ success: true, message: "Form and related data deleted successfully." });
     } catch (error) {
         console.error("Error deleting form:", error);
         res.status(500).json({ success: false, message: "Server error." });

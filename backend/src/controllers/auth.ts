@@ -73,7 +73,6 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
         if (!process.env.JWT_SECRET) {
             throw new Error('JWT_SECRET environment variable is not defined');
         }
-        
         const payload = { email: user.email, sub: user.userId };
         const access_token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
         
