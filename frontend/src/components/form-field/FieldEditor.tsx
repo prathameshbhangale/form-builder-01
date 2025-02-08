@@ -43,12 +43,20 @@ export const FieldEditor = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Label
             </label>
-            <input
+            { field.type !== 'description' ?
+              <input
               type="text"
               value={field.label}
               onChange={(e) => handleFieldChange({ label: e.target.value })}
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            />
+              className={`w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500`}
+            /> : 
+            <textarea
+                value={field.label}
+                onChange={(e) => handleFieldChange({ label: e.target.value })}
+                rows={6}
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            }
           </div>
 
           {(field.type !== 'checkbox' && field.type !== 'title' && field.type !== 'description') && (
@@ -79,7 +87,7 @@ export const FieldEditor = () => {
             </div>
           )}
 
-          <div className="flex items-center">
+          {(field.type !== 'checkbox' && field.type !== 'title' && field.type !== 'description') && <div className="flex items-center">
             <input
               type="checkbox"
               id="required"
@@ -90,7 +98,7 @@ export const FieldEditor = () => {
             <label htmlFor="required" className="ml-2 text-sm text-gray-700">
               Required field
             </label>
-          </div>
+          </div>}
 
           <div className="flex justify-end space-x-3 pt-4">
             <button
