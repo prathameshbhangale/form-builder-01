@@ -9,6 +9,8 @@ The **Form Builder Website** allows users to create custom forms and access them
 - Users can create forms with various field types using drag and drop funtionality.
 - Each form gets a unique URL for easy sharing.
 - Responses are stored and can be accessed later.
+- Secure user authentication using JSON Web Tokens (JWT) to manage sessions and protect form access.
+
 
 ## Video Demonstration
 
