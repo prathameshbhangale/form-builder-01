@@ -104,6 +104,7 @@ const StyledForm: React.FC = () => {
                       type="checkbox"
                       name={`${field.id}`}
                       className="w-4 h-4"
+                      // checked={false}
                       onChange={handleChange}
                       required={field.required}
                     />
