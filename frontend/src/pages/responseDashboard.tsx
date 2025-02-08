@@ -47,13 +47,13 @@ const FormResponsePage = () => {
 
   return (
     <div className="max-w-full mx-auto p-6 bg-gray-900 text-white min-h-screen">
-      <h2 className="text-2xl text-center font-semibold mb-4 text-gold-500">User Forms</h2>
+      <h2 className="text-2xl text-center font-semibold mb-4 text-yellow-500">User Forms</h2>
 
       {/* Main Layout Container */}
       <div className="flex gap-6">
         {/* Left Side - Forms List */}
         <div className="w-1/3 bg-gray-800 shadow-md rounded-lg border border-gold-500 p-4">
-          <h3 className="text-xl font-semibold text-gold-500 mb-4">Forms</h3>
+          <h3 className="text-xl font-semibold text-yellow-500 mb-4">Forms</h3>
           {loading ? (
             <p className="text-gray-400 text-center">Loading forms...</p>
           ) : forms.length === 0 ? (
@@ -77,7 +77,7 @@ const FormResponsePage = () => {
 
         {/* Right Side - Responses Table */}
         <div className="w-2/3 bg-gray-800 shadow-md rounded-lg border border-gold-500 p-4">
-          <h3 className="text-xl font-semibold text-gold-500 mb-4">
+          <h3 className="text-xl font-semibold text-yellow-500 mb-4">
             {selectedForm ? `Responses for Form ID: ${selectedForm}` : "Select a form to view responses"}
           </h3>
 
