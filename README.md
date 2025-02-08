@@ -6,7 +6,7 @@ The **Form Builder Website** allows users to create custom forms and access them
 
 ## Features
 
-- Users can create forms with various field types.
+- Users can create forms with various field types using drag and drop funtionality.
 - Each form gets a unique URL for easy sharing.
 - Responses are stored and can be accessed later.
 
