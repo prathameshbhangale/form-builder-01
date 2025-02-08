@@ -47,7 +47,7 @@ https://www.loom.com/share/3d0bf7aa2e36404e8997b57a2343f8c6?sid=95d12913-f73f-4e
 - **Backend**: Node.js, Express, TypeORM
 - **Database**: PostgreSQL
 
-## Improvements
+## Improvements Required
 
 - **Better UI**: Improve the design with an appropriate color theme for a cleaner and more modern look.
 - **Shortened Form URLs**: Implement URL shortening for easier sharing and access.
