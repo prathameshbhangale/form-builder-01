@@ -18,7 +18,8 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions: cors.CorsOptions = {
-  origin: ['http://localhost:5173'], // Allowed origins
+  // origin: ['http://localhost:5173'], // Allowed origins
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   credentials: true, // Allow cookies and credentials
