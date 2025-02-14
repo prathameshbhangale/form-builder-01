@@ -31,7 +31,9 @@ https://www.loom.com/share/3d0bf7aa2e36404e8997b57a2343f8c6?sid=95d12913-f73f-4e
    ```
 
 2. Install dependencies and run:
-
+   ```sh
+   docker-compose up -d
+   ```
    ```sh
    cd frontend
    npm install
